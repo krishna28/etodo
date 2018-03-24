@@ -22,8 +22,6 @@ angular.module("appRoutes",['ui.router','ui-notification'])
 				, controller: 'MainCtrl'
 			})
 	$urlRouterProvider.otherwise('/');
-	
-	// $httpProvider.interceptors.push('AuthInterceptor');
 })
 .run(['$state', '$rootScope',function($state, $rootScope){
        
