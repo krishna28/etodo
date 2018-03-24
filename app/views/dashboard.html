@@ -1,0 +1,110 @@
+<div ng-controller="MainCtrl as mainVm">
+	<div class="row" id="projecdt" style="background-color: white;padding: 10px;">
+		<div class="col-md-6">
+			<h3 style="display: inline-block;">Todo</h3>
+			<hr>
+			<div>
+				<form role="form" name="form1">
+					
+					<div  class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<label for="title">Description</label>
+						<input type="text" class="form-control" name="description" class="form-control" id="description" placeholder="Description" ng-model="mainVm.todo.description">
+					</div>
+					<div class="form-group col-xs-12">
+						<label for="status">Status</label>
+						<select class="form-control" id="status"
+							ng-model="mainVm.todo.status" name="status">
+							<option value="">Select Status</option>
+							<option value="NEW">NEW</option>
+							<option value="INPROGRESS">IN-PROGRESS</option>
+							<option value="COMPLETED">COMPLETED</option>
+						</select>
+					</div>
+					
+					<div class="col-xs-12">
+						<button ng-if="!mainVm.inEdit" type="button" class="btn btn-success" ng-click="mainVm.createTodo()">Create</button>
+						<button ng-if="mainVm.inEdit" type="button" class="btn btn-success" ng-click="mainVm.updateTodo()">Update</button>
+						<button class="btn btn-primary" type="button" ng-click="mainVm.clear()" type="button">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<label class="checkbox-inline"><input type="checkbox" ng-model="mainVm.newb">View New</label>
+			<label class="checkbox-inline"><input type="checkbox" ng-model="mainVm.pendingb">View Pending</label>
+			<label class="checkbox-inline"><input type="checkbox" ng-model="mainVm.complatedb">View Completed</label>
+			
+			<div class="form-group col-xs-12" ng-if="mainVm.newTodos.length > 0 && mainVm.newb">
+			<h3>New List</h3>
+				<table class="table table-bordered table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Description</th>
+							<th scope="col">Status</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="row in mainVm.newTodos" ng-class="'alert alert-danger'">
+							<td style="text-align: left">{{row.description}}</td>
+							<td style="text-align: left">{{row.status}}</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-xs" data-ng-click="mainVm.edit(row)">Edit</button>
+								<button type="button" class="btn btn-danger btn-xs" data-ng-click="mainVm.delete(row)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr>
+			
+			<div class="form-group col-xs-12" ng-if="mainVm.progress.length > 0 && mainVm.pendingb">
+			<h3>In Progress</h3>
+				<table class="table table-bordered table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Description</th>
+							<th scope="col">Status</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="row in mainVm.progress" ng-class="'alert alert-info'">
+							<td style="text-align: left">{{row.description}}</td>
+							<td style="text-align: left">{{row.status}}</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-xs" data-ng-click="mainVm.edit(row)">Edit</button>
+								<button type="button" class="btn btn-danger btn-xs" data-ng-click="mainVm.delete(row)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr>
+			
+			<div class="form-group col-xs-12" ng-if="mainVm.completedList.length > 0 && mainVm.complatedb">
+			<h3>Completed</h3>
+				<table class="table table-bordered table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Description</th>
+							<th scope="col">Status</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="row in mainVm.completedList" ng-class="'alert alert-success'">
+							<td style="text-align: left">{{row.description}}</td>
+							<td style="text-align: left">{{row.status}}</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-xs" data-ng-click="mainVm.edit(row)">Edit</button>
+								<button type="button" class="btn btn-danger btn-xs" data-ng-click="mainVm.delete(row)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<hr>
+</div>
