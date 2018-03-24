@@ -18,7 +18,7 @@ angular.module('appController', [])
 		mainVm.getTodos = function () {
 
 			MainService.getTodos().then(function (response) {
-				console.log("the project data is ", response);
+				console.log("the todos  ", response);
                  var todos = response.data;
 
                  //filter level
